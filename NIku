@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Bittu 🎉</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffeff5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    h1, p, button {
+      color: #d1006c;
+      text-align: center;
+      z-index: 2;
+    }
+    #gift {
+      font-size: 5rem;
+      cursor: pointer;
+      animation: bounce 1.5s infinite;
+    }
+    #nextBtn {
+      padding: 10px 20px;
+      background: #ff69b4;
+      border: none;
+      color: white;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+    }
+    .heart:before, .heart:after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+    .heart:before { top: -10px; left: 0; }
+    .heart:after  { left: -10px; top: 0; }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="page1">
+    <h1>I have a surprise for youuuu 💖</h1>
+    <div id="gift">🎁</div>
+  </div>
+
+  <div id="page2" style="display:none;">
+    <h1>Hi Bittu</h1>
+    <button id="nextBtn">Click to continue</button>
+  </div>
+
+  <div id="page3" style="display:none;">
+    <h1>May your day be filled with love & laughter.<br>Happy Birthday Bittu!</h1>
+  </div>
+
+  <script>
+    const gift = document.getElementById("gift");
+    const nextBtn = document.getElementById("nextBtn");
+
+    gift.onclick = () => {
+      document.getElementById("page1").style.display = "none";
+      document.getElementById("page2").style.display = "flex";
+    };
+
+    nextBtn.onclick = () => {
+      document.getElementById("page2").style.display = "none";
+      document.getElementById("page3").style.display = "flex";
+    };
+
+    // create floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
